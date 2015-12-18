@@ -1,0 +1,64 @@
+<div class="page-header">
+	<a href="#" class="btn btn-sm"><h2>Calendar</h2></a>
+</div>
+<div class="col-md-9">
+                <table  border='1' style="width:100%" class="ctable">
+                    <tr>
+                        <td class="cthead cgeneric">
+                                <b>Sunday</b>
+                        </td>
+                        <td class="cthead cgeneric">
+                                <b>Monday</b>
+                        </td>
+                        <td class="cthead cgeneric">
+                                <b>Tuesday</b>
+                        </td>
+                        <td class="cthead cgeneric">
+                                <b>Wednesday</b>
+                        </td>
+                        <td class="cthead cgeneric">
+                                <b>Thursday</b>
+                        </td>
+                        <td class="cthead cgeneric">
+                                <b>Friday</b>
+                        </td>
+                        <td class="cthead cgeneric">
+                                <b>Saturday</b>
+                        </td>
+                    </tr>
+					 <tr class="cgeneric">
+                        <td class="cblank">
+                        </td>
+                        <td class="cblank">
+                        </td>
+                        <td class="cblank">
+                        </td>
+                        <td class="cblank">
+                        </td>
+                        <td class="cblank">
+                        </td>
+                        <td class="cblank">
+                        </td>
+                        <td class="cblank">
+                        </td>
+                    </tr>
+                    <tr ng-repeat="week in $root.month">
+                        <td ng-repeat="days in week" class="cdates" ng-class="days.class" cl-dates-link>
+                            {{days.date}} {{days.startDate}} 
+                                <br/>
+                                    <div ng-class= "days.wrapperClass">
+                                        <a class= "cdesc" href="{{days.link}}">{{days.desc}}</a>
+                                    </div>
+                                    <div class="boxes" ng-class="days.rangeMargin">
+                                        <span ng-class="days.boxClass" class="pull-left">{{days.leftText}}</span>
+                                        <span ng-class="days.boxClass" class="pull-right">{{days.rightText}}</span>
+                                    </div>
+                            </td>
+                     </tr>
+                    </table>
+	</div>
+	<br/><!-- 
+	<div class="col-md-8">
+	<br/>
+		<a href="#" class="btn btn-primary">Go Back!</a>
+	</div> -->

@@ -1,0 +1,53 @@
+<div class='panel'>
+            <h3>Generate Calender</h3>
+            <div class='btn-group'>
+                <button class='btn btn-primary' ng-model='app.type' btn-radio='"individual"'>Individual</button>
+                <button class='btn btn-primary' ng-model='app.type' btn-radio='"range"'>Range</button>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <datepicker ng-model='app.activeDate' multi-select='app.selectedDates'  select-range='{{app.type=="range"}}'></datepicker>
+                </td>
+                <td style='width:50px'></td>
+                <td>
+                    <div ng-if='app.type=="individual"'>
+						Selected Dates:
+                        <div class='well well-sm'>
+                            <div ng-repeat='d in app.selectedDates | orderBy : app.identity'>
+                                <span ng-model="app.dates[$index].date">{{d | date : 'fullDate'}}</span>
+                                <input type="text" ng-model="app.dates[d].link" placeholder="Provide Link"></input>
+                                <input type="text" ng-model="app.dates[d].desc" placeholder="Provide Description"></input>
+                                <br/>
+                                <input type="text" ng-model="app.dates[d].leftText" placeholder="Left Box"></input>
+                                <input type="text" ng-model="app.dates[d].rightText" placeholder="Right Box"></input>
+                                <button class='btn btn-xs btn-warning' style='margin:5px' ng-click='app.addFromSelected($index, d)'>Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if='app.type=="range"'>
+						Selected Range:
+                        <div class='well well-sm'>
+							{{(app.selectedDates | orderBy)[0] | date:"fullDate"}}
+              
+                            <span ng-if='app.selectedDates.length > 1'>
+							- {{(app.selectedDates | orderBy : '-')[0] | date:"fullDate"}}
+							</span>
+                        <div ng-show="app.selectedDates.length > 0">
+                            <input type="text" ng-model="app.range.link" placeholder="Provide Link"></input>
+                            <input type="text" ng-model="app.range.desc" placeholder="Provide Description"></input>
+                            <br/>
+                            <input type="text" ng-model="app.range.leftText" placeholder="Left Box"></input>
+                            <input type="text" ng-model="app.range.rightText" placeholder="Right Box"></input>
+                            <button class='btn btn-sm btn-primary' style='margin:5px' ng-click='app.addRange(app.selectedDates, app.range)'>Add Dates</button>
+                        </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <div class="col-md-10">
+            <a class="btn btn-sm btn-primary" ui-sref="output" ng-disabled="!app.selectedDates" ng-click="app.generateCalendar()">Generate Calendar</a>
+        </div>

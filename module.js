@@ -1,0 +1,1 @@
+ angular.module('app', ['gm.datepickerMultiSelect', 'ui.router']);
